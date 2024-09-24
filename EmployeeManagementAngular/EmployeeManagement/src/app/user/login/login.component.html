@@ -1,0 +1,78 @@
+<!-- <form (ngSubmit)="login()" #loginForm="ngForm">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" required class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<div>
+  <p>If you haven't registered, please <a routerLink="/user/register">Register</a></p>
+</div> -->
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    <h3 class="text-center mb-4">Login</h3>
+    <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+      <!-- Username field -->
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required class="form-control"
+          placeholder="Enter your username" #usernameField="ngModel">
+        <!-- Error message for username -->
+        <div *ngIf="usernameField.invalid && (usernameField.dirty || usernameField.touched)" class="text-danger">
+          <small *ngIf="usernameField.errors?.['required']">Username is required.</small>
+        </div>
+      </div>
+
+      <!-- Password field -->
+      <div class="form-group mb-4">
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required class="form-control"
+          placeholder="Enter your password" #passwordField="ngModel">
+        <!-- Error message for password -->
+        <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)" class="text-danger">
+          <small *ngIf="passwordField.errors?.['required']">Password is required.</small>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Register link -->
+    <div class="text-center mt-3">
+      <p>If you haven't registered, please <a routerLink="/user/register">Register</a></p>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    <h3 class="text-center mb-4">Login</h3>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required class="form-control"
+          placeholder="Enter your username">
+      </div>
+      <div class="form-group mb-4">
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required class="form-control"
+          placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+    <div class="text-center mt-3">
+      <p>If you haven't registered, please <a routerLink="/user/register">Register</a></p>
+    </div>
+  </div>
+</div> -->
+

@@ -1,0 +1,70 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Employee List</h2>
+
+  <!-- Search bar -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (input)="filterEmployees()"
+          placeholder="Search employees"
+          aria-label="Search employees"
+        />
+      </div>
+    </div>
+
+    <!-- Create Employee button -->
+    <div class="col-md-6 text-end">
+      <a class="btn btn-success" [routerLink]="['/employee/create']">Create Employee</a>
+    </div>
+  </div>
+
+  <!-- Sorting dropdown -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <label for="sortField" class="form-label">Sort By:</label>
+      <select class="form-select" [(ngModel)]="sortField" (change)="sortEmployees()" id="sortField">
+        <option value="name">Name</option>
+        <option value="department">Department</option>
+        <option value="hireDate">Hire Date</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Employee list -->
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let employee of filteredEmployees">
+      <div class="card employee-card shadow-sm" style="border: none;">
+        <img
+          *ngIf="employee.employeeImagePath"
+          [src]="employee.employeeImagePath"
+          class="card-img-top"
+          alt="{{ employee.name }}"
+          style="height: 200px; width: 100%; object-fit: cover;"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ employee.name }}</h5>
+          <p class="card-text"><strong>Department:</strong> {{ employee.departmentName }}</p>
+          <p class="card-text"><strong>Hire Date:</strong> {{ employee.hireDate | date:'shortDate' }}</p>
+          <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-sm me-2" [routerLink]="['/employee/detail', employee.employeeId]">View Profile</a>
+            <a class="btn btn-warning btn-sm me-2" [routerLink]="['/employee/edit', employee.employeeId]">Edit</a>
+            <button class="btn btn-danger btn-sm" (click)="confirmDelete(employee.employeeId)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No results message -->
+  <div *ngIf="filteredEmployees.length === 0" class="alert alert-warning mt-3 text-center">
+    No employees found matching your search criteria.
+  </div>
+
+  <div *ngIf="message" class="alert alert-success mt-3">
+    {{ message }}
+  </div>
+</div>

@@ -1,0 +1,35 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.form-shadow {
+  padding: 20px;
+  background-color: #f8f9fa; /* Light background for contrast */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #343a40; /* Darker text color for the heading */
+}
+
+.form-label {
+  font-weight: 600; /* Bold labels */
+  color: #495057; /* Medium dark color for labels */
+}
+
+.form-control {
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 5px;
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Focus border color */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Focus shadow effect */
+}
+
+.btn {
+  border-radius: 5px; /* Rounded button */
+}

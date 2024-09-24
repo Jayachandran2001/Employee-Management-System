@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Update Employee</h2>
+
+  <button class="btn btn-secondary mb-3" (click)="goBack()">Back to Employee List</button>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="updateEmployee()">
+    <div class="form-group mb-4">
+      <label for="name" class="form-label">Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name" placeholder="Enter employee's name" />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter employee's email" />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="departmentId" class="form-label">Department</label>
+      <select id="departmentId" class="form-select" formControlName="departmentId">
+        <option value="" disabled>Select department</option>
+        <option *ngFor="let department of departments" [value]="department.departmentId">
+          {{ department.departmentName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="hireDate" class="form-label">Hire Date</label>
+      <input id="hireDate" type="date" class="form-control" formControlName="hireDate" />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="age" class="form-label">Age</label>
+      <input id="age" type="number" class="form-control" formControlName="age" placeholder="Enter age" />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="gender" class="form-label">Gender</label>
+      <select id="gender" class="form-select" formControlName="gender">
+        <option value="" disabled>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="dateOfBirth" class="form-label">Date of Birth</label>
+      <input id="dateOfBirth" type="date" class="form-control" formControlName="dateOfBirth" />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="employeeImage" class="form-label">Employee Image</label>
+      <input id="employeeImage" type="file" class="form-control" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg w-100">Update Employee</button>
+  </form>
+</div>

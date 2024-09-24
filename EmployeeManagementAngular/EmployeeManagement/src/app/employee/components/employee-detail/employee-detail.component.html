@@ -1,0 +1,46 @@
+<div class="container mt-5" *ngIf="employee">
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h2 class="text-center mb-4">{{ employee.name }}'s Profile</h2>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <img
+            *ngIf="employee.employeeImagePath"
+            [src]="employee.employeeImagePath"
+            class="img-fluid border border-primary"
+            alt="{{ employee.name }}"
+            style="max-height: 200px; max-width: 100%;"
+          >
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Employee Code:</strong> <span>{{ employee.employeeCode }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Email:</strong> <span>{{ employee.email }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Department:</strong> <span>{{ employee.departmentName }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Hire Date:</strong> <span>{{ employee.hireDate | date:'fullDate' }}</span>
+            </li>
+            <li *ngIf="employee.age" class="list-group-item d-flex justify-content-between">
+              <strong>Age:</strong> <span>{{ employee.age }}</span>
+            </li>
+            <li *ngIf="employee.gender" class="list-group-item d-flex justify-content-between">
+              <strong>Gender:</strong> <span>{{ employee.gender }}</span>
+            </li>
+            <li *ngIf="employee.dateOfBirth" class="list-group-item d-flex justify-content-between">
+              <strong>Date of Birth:</strong> <span>{{ employee.dateOfBirth | date:'fullDate' }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" (click)="goBack()">Back to Employee List</button>
+      </div>
+    </div>
+  </div>
+</div>

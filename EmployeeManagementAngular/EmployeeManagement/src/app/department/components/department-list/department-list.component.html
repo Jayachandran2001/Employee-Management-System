@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Department List</h3>
+  <button routerLink="/department/create" class="btn btn-success mb-3">Create New Department</button>
+
+  <div class="mb-3">
+    <label for="searchTerm">Search:</label>
+    <input type="text" id="searchTerm" [(ngModel)]="searchTerm" (input)="searchDepartments()" placeholder="Search by name or description" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="sortField">Sort By:</label>
+    <div class="d-flex align-items-center">
+      <select id="sortField" [(ngModel)]="sortField" (change)="sortDepartments()" class="form-select me-2">
+        <option value="departmentName">Department Name</option>
+        <option value="departmentLead">Department Lead</option>
+        <option value="description">Description</option>
+      </select>
+      <span class="sort-icon">
+        <i class="fas fa-sort" aria-hidden="true"></i>
+      </span>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department Head</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of filteredDepartments">
+        <td>{{ department.departmentId }}</td>
+        <td>{{ department.departmentName }}</td>
+        <td>{{ department.departmentLead }}</td>
+        <td>{{ department.description }}</td>
+        <td>
+          <button (click)="editDepartment(department.departmentId)" class="btn btn-primary">Edit</button>
+          <button (click)="deleteDepartment(department.departmentId)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

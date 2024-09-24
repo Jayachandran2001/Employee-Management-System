@@ -1,0 +1,66 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="width: 500px;">
+    <h2 class="text-center mb-4">Register</h2>
+
+    <form (ngSubmit)="register()" #registerForm="ngForm" novalidate>
+      <!-- Username Field -->
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" [(ngModel)]="user.username" name="username" required
+               placeholder="Enter your username" #usernameField="ngModel" />
+        <!-- Username Validation -->
+        <div *ngIf="usernameField.invalid && (usernameField.dirty || usernameField.touched)" class="text-danger">
+          <small *ngIf="usernameField.errors?.['required']">Username is required.</small>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="user.email" name="email" required
+               placeholder="Enter your email" #emailField="ngModel" email />
+        <!-- Email Validation -->
+        <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="text-danger">
+          <small *ngIf="emailField.errors?.['required']">Email is required.</small>
+          <small *ngIf="emailField.errors?.['email']">Please enter a valid email.</small>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="user.password" name="password" required
+               placeholder="Enter your password" #passwordField="ngModel" appPasswordValidator />
+        <!-- Password Validation -->
+        <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)" class="text-danger">
+          <small *ngIf="passwordField.errors?.['required']">Password is required.</small>
+          <small *ngIf="passwordField.errors?.['passwordStrength']">Password must be at least 8 characters long, contain one uppercase letter, one number, and one special character.</small>
+        </div>
+      </div>
+
+      <!-- Date of Birth Field -->
+      <div class="form-group mb-3">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="date" id="dateOfBirth" class="form-control" [(ngModel)]="user.dateOfBirth" name="dateOfBirth"
+               max="{{ today }}" required #dobField="ngModel" />
+        <!-- Date of Birth Validation -->
+        <div *ngIf="dobField.invalid && (dobField.dirty || dobField.touched)" class="text-danger">
+          <small *ngIf="dobField.errors?.['required']">Date of Birth is required.</small>
+          <small *ngIf="dobField.errors?.['max']">Date of Birth cannot be in the future.</small>
+        </div>
+      </div>
+
+      <!-- Register Button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Register</button>
+    </form>
+
+    <!-- Success and Error Messages -->
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+
+    <!-- Login Link -->
+    <div class="text-center mt-3">
+      <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </div>
+  </div>
+</div>

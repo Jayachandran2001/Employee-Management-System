@@ -1,0 +1,12 @@
+.container {
+  max-width: 600px; /* Set a maximum width for the form container */
+  margin: auto; /* Center the container */
+}
+
+.form-label {
+  font-weight: 500; /* Slightly bolder labels */
+}
+
+.btn {
+  width: 48%; /* Make buttons more uniform in size */
+}

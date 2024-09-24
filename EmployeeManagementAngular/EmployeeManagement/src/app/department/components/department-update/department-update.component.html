@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <button class="btn btn-secondary mb-3" (click)="goBack()">Back to Department List</button>
+  <h2 class="mb-4 text-center">Update Department</h2>
+  <form [formGroup]="departmentForm" (ngSubmit)="updateDepartment()" class="form-shadow">
+    <div class="mb-4">
+      <label for="departmentName" class="form-label">Department Name</label>
+      <input id="departmentName" formControlName="departmentName" type="text" class="form-control" placeholder="Enter department name" />
+    </div>
+
+    <div class="mb-4">
+      <label for="departmentLead" class="form-label">Department Lead</label>
+      <input id="departmentLead" formControlName="departmentLead" type="text" class="form-control" placeholder="Enter department lead's name" />
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" formControlName="description" class="form-control" rows="4" placeholder="Enter department description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Update Department</button>
+  </form>
+</div>

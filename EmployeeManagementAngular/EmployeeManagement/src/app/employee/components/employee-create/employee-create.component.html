@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Create New Employee</h2>
+
+  <button class="btn btn-secondary mb-3" (click)="goBack()">Back to Employee List</button>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mb-3">
+      <label for="name">Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name" placeholder="Enter employee name" />
+      <div *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched" class="text-danger">
+        Name is required.
+      </div>
+    </div>
+
+    <!-- <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter employee email" />
+      <div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched" class="text-danger">
+        A valid email is required.
+      </div>
+    </div> -->
+
+    <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter employee email" appEmailValidator />
+      <div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched" class="text-danger">
+        <div *ngIf="employeeForm.get('email')?.errors?.['required']">A valid email is required.</div>
+        <div *ngIf="employeeForm.get('email')?.errors?.['invalidEmail']">Please enter a valid email address.</div>
+      </div>
+    </div>
+
+
+
+    <div class="form-group mb-3">
+      <label for="departmentId">Department</label>
+      <select id="departmentId" class="form-select" formControlName="departmentId">
+        <option value="">Select Department</option>
+        <option *ngFor="let department of departments" [value]="department.departmentId">
+          {{ department.departmentName }}
+        </option>
+      </select>
+      <div *ngIf="employeeForm.get('departmentId')?.invalid && employeeForm.get('departmentId')?.touched" class="text-danger">
+        Department is required.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="hireDate">Hire Date</label>
+      <input id="hireDate" type="date" class="form-control" formControlName="hireDate" />
+      <div *ngIf="employeeForm.get('hireDate')?.invalid && employeeForm.get('hireDate')?.touched" class="text-danger">
+        Hire date is required.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="age">Age</label>
+      <input id="age" type="number" class="form-control" formControlName="age" min="18" placeholder="Enter employee age" />
+      <div *ngIf="employeeForm.get('age')?.invalid && employeeForm.get('age')?.touched" class="text-danger">
+        Age must be at least 18.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="gender">Gender</label>
+      <select id="gender" class="form-select" formControlName="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched" class="text-danger">
+        Gender is required.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="dateOfBirth">Date of Birth</label>
+      <input id="dateOfBirth" type="date" class="form-control" formControlName="dateOfBirth" />
+      <div *ngIf="employeeForm.get('dateOfBirth')?.invalid && employeeForm.get('dateOfBirth')?.touched" class="text-danger">
+        Date of Birth is required.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="employeeImage">Employee Image</label>
+      <input id="employeeImage" type="file" class="form-control" (change)="onFileSelected($event)" />
+      <div *ngIf="employeeForm.get('employeeImage')?.invalid && employeeForm.get('employeeImage')?.touched" class="text-danger">
+        Image is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="employeeForm.invalid">Create Employee</button>
+  </form>
+</div>
